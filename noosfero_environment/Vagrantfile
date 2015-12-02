@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "wheezy" do |wheezy|
+    wheezy.vm.hostname = "wheezy"
+    wheezy.vm.box = "wheezy"
+    wheezy.vm.network :forwarded_port, host: 3000, guest: 3000
+
+    wheezy.vm.provision :shell do |shell|
+      shell.inline = 'su vagrant -c /vagrant/start'
+      shell.inline = 'echo So begins a new age of knowledge'
+    end
+
+    end
+  end
+
+  config.vm.define "jessie" do |jessie|
+    jessie.vm.hostname = "jessie"
+    jessie.vm.box = ENV.fetch('VAGRANT_BOX', "debian/jessie64")
+    jessie.vm.network :forwarded_port, host: 4000, guest: 4000
+
+    jessie.vm.provision :shell do |shell|
+      shell.inline = 'su vagrant -c /vagrant/start'
+      shell.inline = 'echo So begins a new age of knowledge'
+    end
+  end
+
+end
