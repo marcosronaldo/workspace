@@ -20,3 +20,11 @@ EOF
 sudo postmap /etc/postfix/virtual
 sudo service postfix reload
 
+cd ~/
+
+[[ -d workspace ]] || git clone https://gitlab.com/noosfero/noosfero.git
+[[ -d workspace ]] || git clone https://github.com/marcosronaldo/workspace.git
+cd workspace
+git up
+sh config/setup_config.sh
+
