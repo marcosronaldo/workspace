@@ -1,6 +1,6 @@
 mkdir ~/git
 cd ~/git
-git clone http://softwarepublico.gov.br/gitlab/softwarepublico/softwarepublico.git
+git -c http.sslVerify=false clone http://softwarepublico.gov.br/gitlab/softwarepublico/softwarepublico.git
 git clone https://gitlab.com/noosfero/noosfero.git
 
 ln -s softwarepublico/src/noosfero-spb/software_communities noosfero/plugins/
