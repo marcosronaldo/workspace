@@ -9,19 +9,36 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     shell.inline = 'echo So begins a new age of knowledge'
   end
 
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+
   config.vm.define "wheezy" do |wheezy|
     wheezy.vm.hostname = "wheezy"
     wheezy.vm.box = "wheezy"
     wheezy.vm.box_url = ["https://github.com/jose-lpa/packer-debian_7.6.0/releases/download/1.0/packer_virtualbox-iso_virtualbox.box"]
     wheezy.vm.network :forwarded_port, host: 3000, guest: 3000
     wheezy.vm.synced_folder '.', '/vagrant', disabled: true
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+      v.cpus = 4
+    end
   end
 
   config.vm.define "jessie" do |jessie|
     jessie.vm.hostname = "jessie"
-    jessie.vm.box = ENV.fetch('VAGRANT_BOX', "debian/jessie64")
-    jessie.vm.network :forwarded_port, host: 4000, guest: 4000
+    #jessie.vm.box = ENV.fetch('VAGRANT_BOX', "debian/jessie64")
+    jessie.vm.box = "jessie"
+    #jessie.vm.box_url = ["https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie"]
+    jessie.vm.box_url = ["https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box"]
+    jessie.vm.network :forwarded_port, host: 4000, guest: 3000
     jessie.vm.synced_folder '.', '/vagrant', disabled: true
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+      v.cpus = 4
+    end
   end
 
 end
