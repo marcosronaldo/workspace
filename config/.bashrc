@@ -11,10 +11,50 @@ FROWNY="${RED}:(${NORMAL}"
 SELECT="if [ \$? = 0 ]; then echo \"${SMILEY}\"; else echo \"${FROWNY}\"; fi"
 
 USER_DISTRO="${BROWN}[${GREEN}\u ${BLUE}$(lsb_release -is)${BROWN}]"
-parse_git_branch() {
- git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+
+#----------------------- GIT INFO on PROMPT -------------------------
+#parse_git_branch() {
+# git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+#}
+
+# Get number of files added to the index (but uncommitted)
+function git_num_added_files {
+	expr $(git status --porcelain 2>/dev/null| grep "^M" | wc -l)
+}
+
+# Get number of files that are uncommitted and not added
+function git_num_not_added {
+	expr $(git status --porcelain 2>/dev/null| grep "^ M" | wc -l)
+}
+
+# Get number of total uncommited files
+#expr $(git status --porcelain 2>/dev/null| egrep "^(M| M)" | wc -l)
+
+function git_num_untracked_files {
+  expr $(git status --porcelain 2>/dev/null| grep "^??" | wc -l)
+}
+
+function parse_git_deleted {
+  [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
+}
+function parse_git_untracked {
+  [[ $(git status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '!'
+}
+function parse_git_added {
+  [[ $(git status 2> /dev/null | grep "new file:") != "" ]] && echo '+'
+}
+function parse_git_modified {
+  [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
+}
+function parse_git_dirty {
+  echo " $(parse_git_added)$(parse_git_deleted)$(parse_git_modified)$(parse_git_untracked)"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
 }
 GIT_BRANCH="${RED}\$(parse_git_branch)"
+
+#---------------------------------------------------------------------------
 
 PS1="${BROWN}\342\224\214\342\224\200${USER_DISTRO} \`${SELECT}\`\n${BROWN}\342\224\224\342\224\200>[${YELLOW}\W${BROWN}]${GIT_BRANCH}${BROWN}#${NORMAL} "
 
@@ -87,5 +127,4 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source $HOME/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
-export EDITOR = "vim"
 
