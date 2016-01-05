@@ -10,16 +10,13 @@ SMILEY="${GREEN}:)${NORMAL}"
 FROWNY="${RED}:(${NORMAL}"
 SELECT="if [ \$? = 0 ]; then echo \"${SMILEY}\"; else echo \"${FROWNY}\"; fi"
 
-#USER="${WHITE}[${GREEN}\u${WHITE}]"
-#DISTRO="${WHITE}[${BLUE}$(lsb_release -is)${WHITE}]"
-
 USER_DISTRO="${BROWN}[${GREEN}\u ${BLUE}$(lsb_release -is)${BROWN}]"
 parse_git_branch() {
  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 GIT_BRANCH="${RED}\$(parse_git_branch)"
 
-PS1="${BROWN}\342\224\214\342\224\200${USER_DISTRO} \`${SELECT}\` ${GIT_BRANCH} \n${BROWN}\342\224\224\342\224\200>[${YELLOW}\W${BROWN}]${NORMAL} "
+PS1="${BROWN}\342\224\214\342\224\200${USER_DISTRO} \`${SELECT}\`\n${BROWN}\342\224\224\342\224\200>[${YELLOW}\W${BROWN}]${GIT_BRANCH}${BROWN}#${NORMAL} "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
