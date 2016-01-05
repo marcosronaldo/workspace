@@ -87,4 +87,5 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source $HOME/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+export EDITOR = "vim"
 
