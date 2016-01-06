@@ -56,7 +56,7 @@ GIT_BRANCH="${RED}\$(parse_git_branch)"
 
 #---------------------------------------------------------------------------
 
-PS1="${BROWN}\342\224\214\342\224\200${USER_DISTRO} \`${SELECT}\`\n${BROWN}\342\224\224\342\224\200>[${YELLOW}\W${BROWN}]${GIT_BRANCH}${BROWN}#${NORMAL} "
+PS1="${BROWN}\342\224\214\342\224\200${USER_DISTRO} \`${SELECT}\`\n${BROWN}\342\224\224\342\224\200>[${YELLOW}\w${BROWN}]${GIT_BRANCH}${BROWN}#${NORMAL} "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -124,7 +124,7 @@ fi
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-source $HOME/.rvm/scripts/rvm
-export PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
+export PATH="$PATH:$HOME/.rvm/gems/ruby-2.2.1/bin"
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
-
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export PATH="$PATH:$HOME/Downloads/firefox"
