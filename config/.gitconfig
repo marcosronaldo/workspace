@@ -11,6 +11,7 @@
   up = !git pull --rebase --prune
   cob = checkout -b
   cm = !git add -A && git commit
+  chp = cherry-pick -x
   save = !git add -A && git commit -m 'SAVEPOINT'
   undo = reset HEAD~1 --mixed
   amend = commit -a --amend

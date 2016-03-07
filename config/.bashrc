@@ -78,10 +78,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias cp='cp -i'
     alias ln='ln -i'
     alias rm='rm -i'
-
     alias histg="history | grep"
-
+    alias tmux4='tmux new-session -d && tmux split-window -h && tmux split-window -v -t 0 && tmux split-window -v -t 1 && tmux -2 attach-session -d'
+    alias tmuxback='tmux -2 attach-session -d'
     alias grep='grep --color=auto'
+    eval $(thefuck --alias)
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
 
