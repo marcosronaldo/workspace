@@ -55,8 +55,9 @@ function parse_git_branch {
 GIT_BRANCH="${RED}\$(parse_git_branch)"
 
 #---------------------------------------------------------------------------
-
-PS1="${BROWN}\342\224\214\342\224\200${USER_DISTRO} \`${SELECT}\`\n${BROWN}\342\224\224\342\224\200>[${YELLOW}\w${BROWN}]${GIT_BRANCH}${BROWN}#${NORMAL} "
+#
+#
+PS1="${BROWN}\342\224\214\342\224\200[\`${SELECT}\`${BROWN}]-${USER_DISTRO}-[${YELLOW}\w${BROWN}]${GIT_BRANCH}${BROWN}\n${BROWN}\342\224\224\342\224\200>${NORMAL} "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
