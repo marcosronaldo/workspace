@@ -115,4 +115,4 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['python', 'flake8']
-colorscheme default
+colorscheme darkblue
