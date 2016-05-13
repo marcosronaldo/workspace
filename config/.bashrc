@@ -73,7 +73,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias .5='cd ../../../../..'
     alias path='echo -e ${PATH//:/\\n}'
     alias sudoe='sudo -E'
-    alias svi='sudoe vim'
+    alias svim='sudoe vim'
     alias edit='vim'
     alias mv='mv -i'
     alias cp='cp -i'
