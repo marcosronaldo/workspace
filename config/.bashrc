@@ -127,6 +127,7 @@ fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/gems/ruby-2.2.1/bin"
+export PATH="$PATH:$HOME/.rvm/gems/ruby-2.3.0/bin"
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/Downloads/firefox"
