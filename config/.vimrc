@@ -86,7 +86,7 @@ autocmd Filetype python setlocal ts=4 sw=4 expandtab
 autocmd Filetype c setlocal ts=4 sw=4 expandtab
 autocmd Filetype cpp setlocal ts=4 sw=4 expandtab
 " colorscheme railscasts
-colorscheme idle
+" colorscheme idle
 
 " nerdtree commands
 autocmd vimenter * NERDTree
